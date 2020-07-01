@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Commander.Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Commander
 {
@@ -29,8 +30,11 @@ namespace Commander
     {
       services.AddDbContext<CommanderContext>(option => option.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
       services.AddControllers();
+
       // services.AddScoped<ICommanderRepo, MockCommanderRepo>(); => Swap the mockCommanderRepo with SqlCommanderRepo with dependency injection
       services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
+
+      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
