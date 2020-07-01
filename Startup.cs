@@ -29,7 +29,8 @@ namespace Commander
     {
       services.AddDbContext<CommanderContext>(option => option.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
       services.AddControllers();
-      services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+      // services.AddScoped<ICommanderRepo, MockCommanderRepo>(); => Swap the mockCommanderRepo with SqlCommanderRepo with dependency injection
+      services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
