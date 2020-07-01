@@ -20,5 +20,16 @@ namespace Commander.Data
     {
       return new Command { Id = 0, HowTo = "Boil an egg", Line = "Boil water", Platform = "Kettle & Pan" };
     }
+
+    // Not Implemeted - Filled in just to fulfil the contract interface
+    public bool SaveChanges()
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public void CreateCommand(Command cmd)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }
