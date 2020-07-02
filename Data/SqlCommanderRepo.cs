@@ -39,5 +39,10 @@ namespace Commander.Data
 
       _context.Commands.Add(cmd);
     }
+
+    public void UpdateCommand(Command cmd)
+    {
+      // Nothing as it is taken care of by DB Context
+    }
   }
 }
