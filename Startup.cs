@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Commander.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace Commander
 {
@@ -29,7 +30,10 @@ namespace Commander
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<CommanderContext>(option => option.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
-      services.AddControllers();
+      services.AddControllers().AddNewtonsoftJson(s =>
+      {
+        s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+      });
 
       // services.AddScoped<ICommanderRepo, MockCommanderRepo>(); => Swap the mockCommanderRepo with SqlCommanderRepo with dependency injection
       services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
